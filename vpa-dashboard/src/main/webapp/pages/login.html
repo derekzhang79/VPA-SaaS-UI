@@ -1,0 +1,27 @@
+<div class="wrapper_login">
+  <div class="bl_login_tbl">
+    <div class="bl_login_cell">
+      <div class="bl_login">
+        <div class="logo"><img src="resources/imgs/vpa-logo-login.png" alt=""></div>
+        <hr>
+        <h2>Sign in to your account</h2>
+        <div class="bl_white mb20">
+          <p class="errors">{{ error }}</p>
+          <form id="frm_login" ng-submit="getLogin()">
+            <label class="lbl_email">Email Address</label>
+            <input id="email" type="email" ng-model="email" ng-init="email=''" ng-trim="true" class="form-control mb20" placeholder="user@company.com" tabindex="1" autofocus>
+            <label class="lbl_pwd">Password</label>
+            <div class="bl_login_pwd mb20">
+              <input id="password" type="password" ng-model="password" ng-init="password=''" ng-trim="true" class="form-control txt-pwd" placeholder="Password" tabindex="2">
+              <input type="button" id="btnToggleShowHide" ng-click="showHide()" value="show" class="btn-pwd btn">
+            </div>
+            <div class="text-center">
+              <input type="submit" class="btn btn-vpa" value="Sign In" tabindex="3">
+            </div>
+          </form>
+        </div>
+        <div class="text-center forgot_pwd_link"><a href="#/forgotPassword" tabindex="4">Need help signing in?</a></div>
+      </div>
+    </div>
+  </div>
+</div>

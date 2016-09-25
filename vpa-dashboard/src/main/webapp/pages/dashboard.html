@@ -1,0 +1,567 @@
+<div id="dashboard_screenshot" class="bl_content" ng-init="init()">
+	<div class="bl_content_in">
+		<article>
+		<section>
+			<div class="container-fluid">
+				<div class="row"> <!-- Email Button Row starts -->
+	          		<div class="col-md-12 text-right mb20">
+	            		<button class="btn btn-blue btn-dashboard" ng-click="initScreenshot('#dashboard_screenshot')"><span class="fa fa-share-square-o"></span>Email Dashboard</button>
+	            		<input type="hidden" name="img_val" id="img_val" value="" />
+	            		<input type="hidden" name="svgOutput" id="svgOutput" value="" />
+	            	</div>
+          		</div><!-- Email Button Row Ends -->
+				<div vertilize-container class="row">
+					<div id="unprotected_screenshot" class="col-md-6 col-sm-6 mb20">
+						<div class="bl_white top_block bl_dashboard">
+							<h2>Unprotected Products</h2>
+							<div class="bl_icons">
+								<a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#unprotected_screenshot')"><span
+									class="fa fa-envelope"></span></a> <a href="javascript:;"
+									class="trigger_info pull-right"><span
+									class="fa fa-info-circle"></span></a>
+							</div>
+							<div class="section_info">
+								<div class="section_info_in">
+									<span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Content here</p>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-4 col-sm-4">
+									<div class="graph_unprotected">
+										<svg></svg>
+										<div class="content">
+											<span class="number" data-ng-init="unprotectedData.unProtectedProductPercentage = 0">{{ unprotectedData.unProtectedProductPercentage | number:0 }}%</span> <span class="lbl_number">of Product<br/>
+												Portfolio
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8 col-sm-8">
+									<div class="bl_value">
+										<p class="value" data-ng-init="unprotectedData.riskRevenuePrice = 0">{{ unprotectedData.riskRevenuePrice |
+											currency:"$":0 }}</p>
+										<p class="title">Revenue at Risk</p>
+										<p class="glp">Based on US GLP of {{ unprotectedData.glpDate }}</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bl_db_tbl">
+										<div vertilize>
+											<table class="tbl_db_bl">
+												<tr data-ng-show="unprotectedData.top3unProtectedProducts.length">
+													<th colspan="2">Top <span class="big">3</span> Unprotected Products</th>
+													<th>Revenue<br> at risk</th>
+												</tr>
+												<tr data-ng-repeat="top3unProtectedProduct in unprotectedData.top3unProtectedProducts">
+													<td>{{ $index+1 }}</td>
+													<td>{{ top3unProtectedProduct.productName }}</td>
+													<td><span
+														ng-hide="top3unProtectedProduct.revenueAtRiskPrice==''">${{
+															top3unProtectedProduct.revenueAtRiskPrice | thousandSuffix:2 }}</span></td>
+												</tr>
+												<tr data-ng-hide="unprotectedData.top3unProtectedProducts.length">
+	                            					<td colspan="3" class="text-center blank">No Products</td>
+	                            				</tr>
+											</table>
+										</div>
+										<div class="text-center">
+											<button class="btn btn-blue" data-ng-click="location.redirectTo('/viewAllUnprotectedProducts')">View All</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="bl_mask"></div>
+			                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+			                    <div class="close"><span class="fa fa-remove"></span></div>
+			                    <h2>Email Unprotected Products</h2>
+			                    <div class="popup_in">
+			                    	<p class="errors">{{ error }}</p>
+			                        <label>Email Address</label>
+			                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+			                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+			                    </div>
+			                </div>
+						</div>
+					</div>
+					<div id="flagged_screenshot" class="col-md-6 col-sm-6 mb20">
+						<div class="bl_white top_block bl_dashboard">
+							<h2>Flagged Products</h2>
+							<div class="bl_icons">
+								<a href="javascript:;" class="trigger_email pull-left"  ng-click="initScreenshot('#flagged_screenshot')"><span
+									class="fa fa-envelope"></span></a> <a href="javascript:;"
+									class="trigger_info pull-right"><span
+									class="fa fa-info-circle"></span></a>
+							</div>
+							<div class="section_info">
+								<div class="section_info_in">
+									<span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Content here</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-4 col-sm-4">
+									<div class="graph_compromised">
+										<svg></svg>
+										<div class="content">
+											<span class="number" data-ng-init="compromisedData.totalCompromisedProducts = 0">{{ compromisedData.totalCompromisedProducts
+												}}</span> <span class="lbl_number" data-ng-init="compromisedData.totalProducts = 0">OUT OF {{
+												compromisedData.totalProducts }}<br/> PRODUCTS
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8  col-sm-8">
+									<div class="bl_value">
+										<p class="value" data-ng-init="compromisedData.projectedRevenueLossPrice = 0">{{
+											compromisedData.projectedRevenueLossPrice | currency:"$":0 }}</p>
+										<p class="title">Projected Revenue Loss</p>
+										<p class="glp">Based on US GLP of {{ compromisedData.glpDate }}</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bl_db_tbl">
+										<div vertilize>
+											<table class="tbl_db_bl">
+												<tr data-ng-show="compromisedData.top3CompromisedProductsList.length">
+													<th colspan="2">Top <span class="big">3</span> Flagged Products</th>
+													<th>Projected Revenue Loss</th>
+												</tr>
+												<tr
+													ng-repeat="top3compromisedProduct in compromisedData.top3CompromisedProductsList">
+													<td>{{ $index+1 }}</td>
+													<td>{{ top3compromisedProduct.productName }}</td>
+													<td><span
+														ng-hide="top3compromisedProduct.revenueLoss==''">${{
+															top3compromisedProduct.revenueLoss | thousandSuffix:2 }}</span></td>
+												</tr>
+												<tr data-ng-hide="compromisedData.top3CompromisedProductsList.length">
+	                            					<td colspan="3" class="text-center blank">No Products</td>
+	                            				</tr>
+											</table>
+										</div>
+										<div class="text-center">
+											<button class="btn btn-blue" data-ng-click="location.redirectTo('/viewAllCompromisedProducts')">View All</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="bl_mask"></div>
+		                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+		                    <div class="close"><span class="fa fa-remove"></span></div>
+		                    <h2>Email Flagged Products</h2>
+		                    <div class="popup_in">
+		                    	<p class="errors">{{ error }}</p>
+		                        <label>Email Address</label>
+		                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+		                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+		                    </div>
+		                </div>
+						</div>
+					</div>
+				</div>
+				<div class="row hidden-xs mb20">
+					<div class="col-md-12">
+						<div id="map_module_screenshot" class="bl_main_tabs">
+							<tabset justified="true"> <tab class="nav-tabs"> <tab-heading>
+							<span class="auth_number">{{ worldMapTabs[0].count |
+								currency:"":0 }}</span> <span class="auth_label">Total
+								Authentications</span> <span class="auth_note">+ {{
+								worldMapTabs[0].authLast24Hrs }} in last 24 hours</span> </tab-heading>
+							<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#map_module_screenshot')"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+							<div class="section_info">
+								<div class="section_info_in">
+									<span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Help Content here</p>
+								</div>
+							</div>
+							<div>
+								<div class="bl_world_map">
+									<img src="resources/imgs/world-map.png" alt="">
+									<div class="map_badge emea" data-ng-class="{big: worldMapData.EMEA.totalCount == maxTotalCount, small:  worldMapData.EMEA.totalCount == minTotalCount}">
+										<div class="map_badge_in">
+											<div class="map_tip">
+												<div class="map_tip_in">
+													<span class="val">{{ worldMapData.EMEA.totAuthPercent | number:0 }}%</span> of Total
+												</div>
+											</div>
+											<span class="title">EMEA</span> <span class="value">{{
+												worldMapData.EMEA.totalCount | thousandSuffix:1 }}</span> <span class="note" data-ng-init="worldMapData.EMEA.numberOfEntities = 0">{{
+												worldMapData.EMEA.totalEntitiesCount }} Entities</span>
+										</div>
+									</div>
+									<div class="map_badge americas" data-ng-class="{big: worldMapData.Americas.totalCount == maxTotalCount, small:  worldMapData.Americas.totalCount == minTotalCount}">
+										<div class="map_badge_in">
+											<div class="map_tip">
+												<div class="map_tip_in">
+													<span class="val">{{
+														worldMapData.Americas.totAuthPercent | number:0 }}%</span> of Total
+												</div>
+											</div>
+											<span class="title">Americas</span> <span class="value">{{
+												worldMapData.Americas.totalCount | thousandSuffix:1 }}</span> <span class="note" data-ng-init="worldMapData.Americas.numberOfEntities = 0">{{
+												worldMapData.Americas.totalEntitiesCount }} Entities</span>
+										</div>
+									</div>
+									<div class="map_badge apac" data-ng-class="{big: worldMapData.APAC.totalCount == maxTotalCount, small:  worldMapData.APAC.totalCount == minTotalCount}">
+										<div class="map_badge_in">
+											<div class="map_tip">
+												<div class="map_tip_in">
+													<span class="val">{{ worldMapData.APAC.totAuthPercent | number:0 }}%</span> of Total
+												</div>
+											</div>
+											<span class="title">APAC</span> <span class="value">{{
+												worldMapData.APAC.totalCount | thousandSuffix:1 }}</span> <span class="note" data-ng-init="worldMapData.APAC.numberOfEntities = 0">{{
+											worldMapData.APAC.totalEntitiesCount }} Entities</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							</tab> <tab class="nav-tabs"> <tab-heading> <span
+								class="auth_number">{{ worldMapTabs[1].count |
+								currency:"":0 }}</span> <span class="auth_label">Genuine
+								Authentications</span> <span class="auth_note">+ {{
+								worldMapTabs[1].authLast24Hrs }} in last 24 hours</span> </tab-heading>
+							<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#map_module_screenshot')"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+							<div class="section_info">
+								<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+								<div class="section_info_in">
+									<span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Help Content here</p>
+								</div>
+							</div>
+							<div class="bl_world_map">
+								<img src="resources/imgs/world-map.png" alt="">
+								<div class="map_badge emea" data-ng-class="{big: worldMapData.EMEA.genuineCount == maxGenuineCount, small:  worldMapData.EMEA.genuineCount == minGenuineCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.EMEA.genuineAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">EMEA</span> <span class="value">{{
+											worldMapData.EMEA.genuineCount | thousandSuffix:1 }}</span> <span class="note">{{
+											worldMapData.EMEA.totalGenuineEntitiesCount }} Entities</span>
+									</div>
+								</div>
+								<div class="map_badge americas" data-ng-class="{big: worldMapData.Americas.genuineCount == maxGenuineCount, small:  worldMapData.Americas.genuineCount == minGenuineCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.Americas.genuineAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">Americas</span> <span class="value">{{
+											worldMapData.Americas.genuineCount | thousandSuffix:1 }}</span> <span class="note">{{
+											worldMapData.Americas.totalGenuineEntitiesCount }} Entities</span>
+									</div>
+								</div>
+								<div class="map_badge apac" data-ng-class="{big: worldMapData.APAC.genuineCount == maxGenuineCount, small:  worldMapData.APAC.genuineCount == minGenuineCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.APAC.genuineAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">APAC</span> <span class="value">{{
+											worldMapData.APAC.genuineCount | thousandSuffix:1 }}</span> <span class="note">{{
+											worldMapData.APAC.totalGenuineEntitiesCount }} Entities</span>
+									</div>
+								</div>
+							</div>
+							</tab> <tab class="nav-tabs"> <tab-heading> <span
+								class="auth_number">{{ worldMapTabs[2].count |
+								currency:"":0 }}</span> <span class="auth_label">Suspect
+								Authentications</span> <span class="auth_note">+ {{
+								worldMapTabs[2].authLast24Hrs }} in last 24 hours</span> </tab-heading>
+							<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#map_module_screenshot')"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+							<div class="section_info">
+								<div class="section_info_in">
+									<span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Help Content here</p>
+								</div>
+							</div>
+							<div class="bl_world_map">
+								<img src="resources/imgs/world-map.png" alt="">
+								<div class="map_badge emea" data-ng-class="{big: worldMapData.EMEA.suspectedCount == maxSuspectedCount, small:  worldMapData.EMEA.suspectedCount == minSuspectedCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.EMEA.suspectAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">EMEA</span> <span class="value">{{
+											worldMapData.EMEA.suspectedCount | thousandSuffix:1 }}</span> <span class="note">{{
+										worldMapData.EMEA.totalSuspectedEntitiesCount }} Entities</span>
+									</div>
+								</div>
+								<div class="map_badge americas" data-ng-class="{big: worldMapData.Americas.suspectedCount == maxSuspectedCount, small:  worldMapData.Americas.suspectedCount == minSuspectedCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.Americas.suspectAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">Americas</span> <span class="value">{{
+											worldMapData.Americas.suspectedCount | thousandSuffix:1 }}</span> <span class="note">{{
+											worldMapData.Americas.totalSuspectedEntitiesCount }} Entities</span>
+									</div>
+								</div>
+								<div class="map_badge apac" data-ng-class="{big: worldMapData.APAC.suspectedCount == maxSuspectedCount, small:  worldMapData.APAC.suspectedCount == minSuspectedCount}">
+									<div class="map_badge_in">
+										<div class="map_tip">
+											<div class="map_tip_in">
+												<span class="val">{{
+													worldMapData.APAC.suspectAuthPercent | number:0 }}%</span> of Total
+											</div>
+										</div>
+										<span class="title">APAC</span> <span class="value">{{
+											worldMapData.APAC.suspectedCount | thousandSuffix:1 }}</span> <span class="note">{{
+											worldMapData.APAC.totalSuspectedEntitiesCount }} Entities</span>
+									</div>
+								</div>
+							</div>
+							</tab> </tabset>
+							
+							<div class="bl_mask"></div>
+			                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+			                    <div class="close"><span class="fa fa-remove"></span></div>
+			                    <h2>Email Authentications</h2>
+			                    <div class="popup_in">
+			                    	<p class="errors">{{ error }}</p>
+			                        <label>Email Address</label>
+			                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+			                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+			                    </div>
+			                </div>
+						</div>
+					</div>
+				</div>
+
+		<!-- MOBILE TABS -->
+		 <div class="row mb20 hidden visible-xs"> <!-- Authentications Block (Visible on mobile) starts -->
+          	<div id="mobileVewMap_screenshot" class="col-md-6">
+            	<div class="bl_white bl_dashboard">
+	              	<h2>Authentications</h2>
+	              	<div class="bl_icons"><a href="javascript:;" ng-click="initScreenshot('#mobileVewMap_screenshot')" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+	                <div class="section_info">
+	                  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+	                    <p>Content here</p>
+	                  </div>
+	                </div>
+	                <div class="bl_tabs tabs_authentications">
+	                	<tabset justified="true">
+	                		<tab class="nav-tabs" data-ng-click="generateAuthChart('.graph_total', 'totalAuth')">
+	                			<tab-heading>
+	                				<span aria-controls="auth_total" id="trigger_auth_total">Total</span>
+	                			</tab-heading>
+	                			<div class="graph_total bl_auth_graph">
+                            	<svg></svg>
+	                                <div class="content">
+	                                	<span class="value">{{ sumAuth }}</span>{{  authType  }}<br/> Authentications
+	                                </div>
+	                            </div>
+	                        	<div class="row tab_panel_details">
+	                            	<div class="col-md-4 col-sm-4 col-xs-4 bl_americas">
+	                                	<span class="value">{{ worldMapData.Americas.totalCount | thousandSuffix:1 }}</span>
+	                                	Americas
+	                                </div>
+	                                <div class="col-md-4 col-sm-4 col-xs-4 bl_emea">
+	                                	<span class="value">{{ worldMapData.EMEA.totalCount | thousandSuffix:1 }}</span>
+	                                    EMEA
+	                                </div>
+	                                <div class="col-md-4 col-sm-4 col-xs-4 bl_apac">
+	                                	<span class="value">{{ worldMapData.APAC.totalCount | thousandSuffix:1 }}</span>
+	                                    APAC
+	                                </div>
+	                            </div>
+	                		</tab>
+	                		<tab class="nav-tabs" data-ng-click="generateAuthChart('.graph_genuine', 'genuineAuth')">
+	                			<tab-heading>
+	                				<span aria-controls="auth_total" id="trigger_auth_total">Genuine</span>
+	                			</tab-heading>
+	                			<div class="bl_auth_graph graph_genuine">
+                            	<svg></svg>
+                                <div class="content">
+                                	<span class="value">{{ sumAuth }}</span>{{  authType  }}<br/> Authentications
+                                </div>
+	                            </div>
+	                        	<div class="row tab_panel_details">
+	                            	<div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_americas">
+	                                	<span class="value">{{ worldMapData.Americas.genuineCount | thousandSuffix:1 }}</span>
+	                                	Americas
+	                                </div>
+	                                <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_emea">
+	                                	<span class="value">{{ worldMapData.EMEA.genuineCount | thousandSuffix:1 }}</span>
+	                                    EMEA
+	                                </div>
+	                                <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_apac">
+	                                	<span class="value">{{ worldMapData.APAC.genuineCount | thousandSuffix:1 }}</span>
+	                                    APAC
+	                                </div>
+	                            </div>
+	                		</tab>
+	                		<tab class="nav-tabs" data-ng-click="generateAuthChart('.graph_suspect', 'suspectAuth')">
+	                			<tab-heading>
+	                				<span aria-controls="auth_total" id="trigger_auth_total">Suspect</span>
+	                			</tab-heading>
+	                			<div class="bl_auth_graph graph_suspect">
+                            	<svg></svg>
+                                <div class="content">
+                                	<span class="value">{{ sumAuth }}</span>{{  authType  }}<br/> Authentications
+                                </div>
+	                            </div>
+	                            <div class="row tab_panel_details">
+	                            	<div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_americas">
+	                                	<span class="value">{{ worldMapData.Americas.suspectedCount | thousandSuffix:1 }}</span>
+	                                	Americas
+	                                </div>
+	                                <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_emea">
+	                                	<span class="value">{{ worldMapData.EMEA.suspectedCount | thousandSuffix:1 }}</span>
+	                                    EMEA
+	                                </div>
+	                                <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_apac">
+	                                	<span class="value">{{ worldMapData.APAC.suspectedCount | thousandSuffix:1 }}</span>
+	                                    APAC
+	                                </div>
+	                            </div>
+	                		</tab>
+	                	</tabset>
+	                </div>
+	                <div class="bl_mask"></div>
+	                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+	                    <div class="close"><span class="fa fa-remove"></span></div>
+	                    <h2>Email Entities Buying Counterfeit</h2>
+	                    <div class="popup_in">
+	                    	<p class="errors">{{ error }}</p>
+	                        <label>Email Address</label>
+	                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+	                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+	                    </div>
+	                </div>
+            	</div>
+         	</div>
+         </div>
+		
+		<div vertilize-container class="row"> <!-- Top 3 Entities blocks starts -->
+            <div id="buying_CF_screenshot" class="col-md-6 col-sm-6 mb20">
+              <div class="bl_white btm_block bl_dashboard"> <!-- Top 3 Entities Buying CF block starts -->
+              	<h2>Top 3 Entities Buying Counterfeit</h2>
+              	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#buying_CF_screenshot')"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+                <div class="section_info">
+                  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                    <p>Content here</p>
+                  </div>
+                </div>
+                <div class="row">
+	                <div class="col-md-12">
+                    	<div class="bl_db_tbl">
+                    		<div vertilize>
+	                        	<table class="tbl_db_bl">
+	                            	<tr data-ng-show="top3BuyingCFEntities.length">
+	                                	<th colspan="2"><span class="hidden-xs">Entity Name</span></th>
+	                                    <th><span class="hidden-xs">Suspect Authentications /<br/>Revenue Loss</span></th>
+	                                </tr>
+	                                <tr data-ng-init="top3BuyingCFEntities = []" data-ng-repeat="buyingCFEntities in top3BuyingCFEntities | limitTo:3">
+	                                	<td>{{ $index+1 }}</td>
+	                                    <td>{{ buyingCFEntities.entityName }}</td>
+	                                    <td><span class="values" data-ng-hide="buyingCFEntities.isEmpty==true">{{ buyingCFEntities.numberOfSuspectAuthentications }} / ${{ buyingCFEntities.revenueLoss | thousandSuffix:2 }}<span class="ttip"><span class="num">{{ buyingCFEntities.totalAuthentications }}
+</span> Total Authentications</span></span></td>
+	                                </tr>
+	                                <tr data-ng-hide="top3BuyingCFEntities.length">
+	                            		<td colspan="3" class="text-center blank">No Products</td>
+	                            	</tr>
+	                            </table>
+                            </div>
+                            <div class="text-center"><button class="btn btn-blue" data-ng-click="location.redirectTo('/viewAllBuyingCFEntities')">View All</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bl_mask"></div>
+                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                    <div class="close"><span class="fa fa-remove"></span></div>
+                    <h2>Email Entities Buying Counterfeit</h2>
+                    <div class="popup_in">
+                    	<p class="errors">{{ error }}</p>
+                        <label>Email Address</label>
+                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+                    </div>
+                </div>
+              </div> <!-- Top 3 Entities Buying CF block ends -->
+            </div>
+            <div id="selling_CF_screenshot" class="col-md-6 col-sm-6 mb20">
+              <div class="bl_white btm_block bl_dashboard"> <!-- Top 3 Entities Selling CF block starts -->
+              	<h2>Top 3 Entities Selling Counterfeit</h2>
+              	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left" ng-click="initScreenshot('#selling_CF_screenshot')"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+                <div class="section_info">
+                  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                    <p>Content here</p>
+                  </div>
+                </div>
+                <div class="row">
+	                <div class="col-md-12">
+                    	<div class="bl_db_tbl">
+                        	<div vertilize>
+	                        	<table class="tbl_db_bl">
+	                            	<tr data-ng-show="top3SellingCFEntities.length">
+	                                	<th colspan="2"><span class="hidden-xs">Entity Name</span></th>
+	                                    <th><span class="hidden-xs">Suspect Authentications / <br/>Revenue Loss</span></th>
+	                                </tr>
+	                                <tr data-ng-init="top3SellingCFEntities = []" data-ng-repeat="sellingCFEntities in top3SellingCFEntities | limitTo:3">
+	                                	<td>{{ $index+1 }}</td>
+	                                    <td>{{ sellingCFEntities.entityName }}</td>
+	                                    <td><span class="values" data-ng-hide="sellingCFEntities.isEmpty==true" ng-init="bindTooltip()">{{ sellingCFEntities.numberOfSuspectAuthentications }} / ${{ sellingCFEntities.revenueLoss | thousandSuffix:2 }} <span class="ttip"><span class="num">{{ sellingCFEntities.totalAuthentications }}
+</span> Total Authentications</span></span></td>
+	                                </tr>
+	                                <tr data-ng-hide="top3SellingCFEntities.length" >
+	                            		<td colspan="3" class="text-center blank">No Products</td>
+	                            	</tr>
+	                            </table>
+                            </div>
+                            <div class="text-center"><button class="btn btn-blue" data-ng-click="location.redirectTo('/viewAllSellingCFEntities')">View All</button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bl_mask"></div>
+                <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                    <div class="close"><span class="fa fa-remove"></span></div>
+                    <h2>Email Entities Selling Counterfeit</h2>
+                    <div class="popup_in">
+                    	<p class="errors">{{ error }}</p>
+                        <label>Email Address</label>
+                        <input type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10">
+                        <div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+                    </div>
+                </div>
+              </div> <!-- Top 3 Entities Selling CF block ends -->
+            </div>
+          </div><!-- Top 3 Entities blocks ends -->
+			</div>
+		</section>
+		</article>
+	</div>
+</div>
+
+<div class="mask"></div><!-- Popup Mask -->
+<div class="popup popup_email_dashboard"><!-- Popup for Email Dashboard starts -->
+	<div class="close"><span class="fa fa-remove"></span></div>
+	<h2 ng-init="emailDashboardCaption = 'Email Dashboard'">{{ emailDashboardCaption }}</h2>
+	<div class="popup_in">
+		<p class="errors">{{ error }}</p>
+		<label>Email Address</label>
+		<input id="emailScreenshot" type="text" placeholder="Email Address" data-ng-init="screenshot.emailAddress = ''" data-ng-model="screenshot.emailAddress" class="form-control mb10" />
+		<div class="text-center"><button class="btn btn-blue" data-ng-click="sendScreenshot()">Send</button></div>
+	</div>
+</div><!-- Popup for Email Dashboard ends -->

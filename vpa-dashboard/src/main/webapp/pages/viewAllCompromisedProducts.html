@@ -1,0 +1,54 @@
+<!-- Content area starts -->
+<div class="bl_content" ng-init="init()">
+  <div class="bl_content_in">
+    <article>
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+        	<div class="col-md-12">
+        	<div class="bl_white bl_page_inside">
+        		<div class="row pg_head">
+                    	<div class="col-md-8 col-sm-8"><h2>Flagged Products</h2></div>
+                        <div class="col-md-4 col-sm-4"><button class="btn btn-blue mb10 pull-right" ng-click="location.redirectTo('/home')">Back</button></div>
+                </div> 
+        		<table class="tbl_list footable">
+	              	<thead>
+	                      <tr>
+	                      	  <th data-hide="phone,tablet">&nbsp;</th>
+	                      	  <th data-toggle="true">Product ID</th>
+	                          <th data-hide="phone,tablet">Product Family</th>
+	                          <th data-hide="phone,tablet">Business Unit</th>
+	                          <th data-hide="phone, tablet" class="text-right">List Price</th>
+	                          <th class="text-right">Revenue Loss</th>
+	                          <th class="text-right" width="15%">Projected<br>Revenue Loss</th>
+	                      </tr>
+	                  </thead>
+	                  <tbody>
+	                  	<tr ng-repeat="compromisedData in filteredCompromisedData | limitTo:10" ng-class="$index%2 == 0 ? 'even' : 'odd'"  ng-init="filteredCompromisedData=[]">
+			               <td>{{ $index+1 }}</td>
+			               <td><span class="user">{{ compromisedData.productName }}</span></td>
+		                   <td>{{ compromisedData.productFamily }}</td>
+		                   <td>{{ compromisedData.businessUnit }}</td>
+		                   <td class="text-right"><span class="price">{{ compromisedData.glp | currency:"$":0  }}</span></td>
+		                   <td class="text-right"><span class="price txt-red">{{ compromisedData.revenueLoss | currency:"$":0 }}</span></td>
+		                   <td class="text-right"><span class="price txt-red">{{ compromisedData.projectedRevenueLoss | currency:"$":0 }}</span></td>
+						</tr>
+						<tr ng-hide="filteredCompromisedData.length">
+	                    	<td colspan="7" class="text-center blank">No Products</td>
+	                    </tr>
+	                  </tbody>
+	              </table>
+        	</div>
+			<!-- Pagination directive -->
+			<div class="vpa_pagination hidden">
+                <nav>
+					<pagination ng-show="filteredCompromisedData.length" total-items="totalItems" items-per-page="numPerPage" ng-model="currentPage" ng-change="pageChanged()" previous-text="" next-text="" first-text="" last-text="" boundary-links="true"></pagination>
+        		</nav>
+        	</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </article>
+  </div>
+</div>

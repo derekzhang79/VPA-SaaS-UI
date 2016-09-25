@@ -1,0 +1,57 @@
+<!-- Content area starts -->
+  <div class="bl_content" ng-init="init()">
+    <div class="bl_content_in">
+      <atricle>
+      <section>
+        <div class="container-fluid">
+          <div class="row">
+          	<div class="col-md-12 mb20">
+          		<div class="bl_white bl_page_inside">
+          			<div class="row pg_head">
+                    	<div class="col-md-8 col-sm-8"><h2>Recent Authentications</h2></div>
+                        <div class="col-md-4 col-sm-4"><button class="btn btn-blue mb10 pull-right" ng-click="location.redirectTo('/home')">Back</button></div>
+                	</div>
+          			<table class="table tbl_list footable">
+                    	<thead>
+                            <tr>
+                            	<th data-hide="phone,tablet">&nbsp;</th>
+                            	<th data-toggle="true">Authenticated By</th>
+                                <th data-hide="phone,tablet">Time</th>
+                                <th data-hide="phone,tablet">Location</th>
+                                <th>Product ID / Layer</th>
+                                <th data-hide="phone,tablet">List Price</th>
+                                <th data-hide="phone,tablet">Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="authentication in authenticationList | limitTo:10" ng-class="$index%2 == 0 ? 'even' : 'odd'">
+                            	<td>{{ $index+1 }}</td>
+                            	<td>
+                            		<span class="user">{{ authentication.user.firstName }} {{ authentication.user.lastName }}</span><br/>
+                            		<span class="company">{{ authentication.companyName }}</span>
+                            	</td>
+                            	<td>{{ authentication.scanDateTime[0] }}<br/>{{ authentication.scanDateTime[1] }} {{ authentication.scanDateTime[2] }}</td>
+                                <td>{{ authentication.city }},<br/>{{ authentication.country }}</td>
+                                <td>
+                                	<span>{{ authentication.product.name }}</span>
+                                	<br/>
+                                	{{ authentication.productType }}
+                                </td>
+                                <td><span class="price">{{ authentication.product.glp | currency:"$":0 }}</span></td>
+                                <td><span class="bold" ng-class="{'txt-red': authentication.scanResultDesc != 'Genuine' , 'txt-green': authentication.scanResultDesc == 'Genuine' }">{{ authentication.scanResultDesc }}</span></td>
+                            </tr>
+                            <tr ng-hide="authenticationList.length">
+                            	<td colspan="8" class="text-center">No Notifications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+          		</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </article>
+    </div>
+  </div>
+  <!-- Content area ends -->
+</div>

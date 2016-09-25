@@ -1,0 +1,911 @@
+<div class="bl_content" ng-init="init()">
+  <div class="bl_content_in page_filters">
+    <article>
+    <section>
+      <div class="container-fluid">
+        <div class="row"> <!-- Page heading and Email Button Row starts -->
+        	<div class="col-md-6 col-sm-6 mb20">
+          	<h2 class="pg_head">Authentications</h2>
+          </div>
+          <div class="col-md-6 col-sm-6 text-right mb20">
+          	<button class="btn btn-blue btn-dashboard"><span class="fa fa-share-square-o"></span>Email Report</button>
+          </div>
+        </div><!-- Page heading and Email Button Row Ends -->
+        <div class="pg_filters"><!-- Page filters starts -->
+            <div class="row">
+              <div class="col-filter col-sm-3 col-xs-6">
+					<label class="hidden-xs">Filter by Region</label>
+					<select ng-options="region as region.name for region in arrFilterRegions " ng-model="selectedRegion" ng-change="updateFilters()"></select>
+              </div>
+		
+              <div class="col-filter col-sm-3 col-xs-6">
+                  	<label class="hidden-xs">Filter By Time Period</label>
+					<select ng-options="time as time.name for time in arrFilterTime " ng-model="selectedTime" ng-change="updateFilters()"></select>
+              </div>
+              <div class="col-filter col-sm-3 hidden-xs">
+                  <label>Filter by Entity Type</label>
+					<select ng-options="entitiyType as entitiyType.name for entitiyType in arrFilterEntitiyType " ng-model="selectedEntityType" ng-change="updateFilters()"></select>
+              </div>
+              <div class="col-filter col-sm-3 hidden-xs">
+                  <label>Filter by Layer</label>
+					<select ng-options="layer as layer.name for layer in arrFilterLayer " ng-model="selectedLayer" ng-change="updateFilters()"></select>
+              </div>
+              <div class="col-filter col-sm-2 hidden-xs">
+                  	<label>&nbsp;</label>
+					<div class="text-center">
+						<button class="btn btn-blue" ng-click="clearFilters()">Clear Filters</button>
+					</div>
+              </div>
+            </div>
+        </div><!-- Page filters ends -->
+        <div class="row">
+        	<div class="col-md-4 col-sm-4 mb20">
+            <div class="bl_white bl_dashboard"> <!-- Top 3 Entities Buying CF block starts -->
+            	<h2 class="mb0 head_height">Top 3 Entities Buying Counterfeit</h2>
+		<p class="sub-text">(Sorted by Revenue Loss)</p>
+		
+            	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+              <div class="section_info">
+                <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                  <p>Content here</p>
+                </div>
+              </div>
+              <div class="row">
+               <div class="col-md-12">
+                  	<div class="bl_db_tbl">
+                      	<div class="top_block clearfix">
+                              <table class="tbl_db_bl">
+                                  <tr>
+                                      <th colspan="2"><span class="hidden-xs">Entity Name</span></th>
+                                      <th><span class="hidden-xs hidden-sm">Counterfeit Authentications</span></th>
+                                  </tr>
+                                  <tr>
+                                      <td>1</td>
+                                      <td>AT&amp;T</td>
+                                      <td><span class="values">86<span class="ttip"><span class="num">16.8M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>2</td>
+                                      <td>Immigration and Customs Enforcement (ICE)</td>
+                                      <td><span class="values">122<span class="ttip"><span class="num">14.6M</span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>3</td>
+                                      <td>China Telecom</td>
+                                      <td><span class="values">110<span class="ttip"><span class="num">12M</span> Revenue loss</span></span></td>
+                                  </tr>
+                              </table>
+                          </div>
+                          <div class="text-center"><button class="btn btn-blue" onClick="document.location.href='buying-counterfeit.html'">View All</button></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="bl_mask"></div>
+              <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                  <div class="close"><span class="fa fa-remove"></span></div>
+                  <h2>Email Entities Buying Counterfeit</h2>
+                  <div class="popup_in">
+                      <label>Email Address</label>
+                      <input type="email" placeholder="Email Address" class="form-control mb10">
+                      <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                  </div>
+              </div>
+            </div> <!-- Top 3 Entities Buying CF block ends -->
+          </div>
+          <div class="col-md-4 col-sm-4 mb20">
+            <div class="bl_white bl_dashboard"> <!-- Top 3 Entities Selling CF block starts -->
+            	<h2 class="mb0 head_height">Top 3 Entities Selling Counterfeit</h2>
+		<p class="sub-text">(Sorted by Revenue Loss)</p>
+            	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+              <div class="section_info">
+                <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                  <p>Content here</p>
+                </div>
+              </div>
+              <div class="row">
+               <div class="col-md-12">
+                  	<div class="bl_db_tbl">
+                      	<div class="top_block clearfix">
+                              <table class="tbl_db_bl">
+                                  <tr>
+                                      <th colspan="2"><span class="hidden-xs">Entity Name</span></th>
+                                      <th><span class="hidden-xs hidden-sm">Counterfeit Authentications</span></th>
+                                  </tr>
+                                  <tr>
+                                      <td>1</td>
+                                      <td>NetServe Ltd.</td>
+                                      <td><span class="values">123<span class="ttip"><span class="num">2.2M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>2</td>
+                                      <td>Atlantic Telecommunications Services Corp.</td>
+                                      <td><span class="values">102<span class="ttip"><span class="num">1.8M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>3</td>
+                                      <td>IPNETON GMBH</td>
+                                      <td><span class="values">74<span class="ttip"><span class="num">1.6M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                              </table>
+                          </div>
+                          <div class="text-center"><button class="btn btn-blue" onClick="document.location.href='selling-counterfeit.html'">View All</button></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="bl_mask"></div>
+              <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                  <div class="close"><span class="fa fa-remove"></span></div>
+                  <h2>Email Entities Selling Counterfeit</h2>
+                  <div class="popup_in">
+                      <label>Email Address</label>
+                      <input type="email" placeholder="Email Address" class="form-control mb10">
+                      <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                  </div>
+              </div>
+            </div> <!-- Top 3 Entities Selling CF block ends -->
+          </div>
+          
+          
+          
+          <div class="col-md-4 col-sm-4 mb20">
+            <div class="bl_white bl_dashboard"><!-- Compromised Products Blocks starts -->
+            	<h2 class="mb0 head_height">Top 3 Counterfeit Products</h2>
+		<p class="sub-text">(Sorted by Revenue Loss)</p>
+            	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+              <div class="section_info">
+                <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                  <p>Content here</p>
+                </div>
+              </div>
+              <div class="row">
+               <div class="col-md-12">
+                  	<div class="bl_db_tbl">
+                      	<div class="top_block clearfix">
+                              <table class="tbl_db_bl tbl_db_bl2">
+                                  <tr>
+                                      <th colspan="2">Counterfeit Products</th>
+                                      <th><span class="hidden-xs hidden-sm">Counterfeit<br>Authentications</span></th>
+                                  </tr>
+                                  <tr>
+                                      <td><span class="sr">1</span></td>
+                                      <td><div class="flow_wrap" title="7606S-RSP7C-10G-R">7606S-RSP7C-10G-R</div></td>
+                                      <td><span class="values">56<span class="ttip"><span class="num">8.8M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>2</td>
+                                      <td><div class="flow_wrap" title="PA-MC-STM-1SMI">PA-MC-STM-1SMI</div></td>
+                                      <td><span class="values">39<span class="ttip"><span class="num">4.6M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                                  <tr>
+                                      <td>3</td>
+                                      <td><div class="flow_wrap" title="SPA-1XOC48POS/RPR">SPA-1XOC48POS/RPR</div></td>
+                                      <td><span class="values">31<span class="ttip"><span class="num">3.8M
+  </span> Revenue loss</span></span></td>
+                                  </tr>
+                              </table>
+                          </div>
+                          <div class="text-center"><button class="btn btn-blue" onClick="document.location.href='compromised-products.html'">View All</button></div>
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="bl_mask"></div>
+              <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                  <div class="close"><span class="fa fa-remove"></span></div>
+                  <h2>Email Counterfeit Products</h2>
+                  <div class="popup_in">
+                      <label>Email Address</label>
+                      <input type="email" placeholder="Email Address" class="form-control mb10">
+                      <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>          
+
+
+		
+		
+		
+		
+		
+		<div class="row hidden-xs mb20"> <!-- World Map Block starts -->
+			<div class="col-md-12">
+				<div class="bl_main_tabs">
+					<tabset justified="true">
+						<tab class="nav-tabs">
+							<tab-heading ng-click="setAuthType('')">
+								<span class="auth_number">54,280</span>
+								<span class="auth_label">Total Authentications</span>
+								<span class="auth_note">+ 230 in last 24 hours</span> 
+							</tab-heading>
+							<div class="row">
+                        	<div class="col-md-8 col-sm-8 mid_sec_lft">
+                            	<div class="bl_white bl_dashboard bdr sec_mid map pb0">
+                                	<h2 class="padL15">Total Authentications by Region</h2>
+									<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+									<div class="section_info">
+									  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+										<p>Help Content here</p>
+									  </div>
+									</div>
+									<div class="bl_mask"></div>
+									<div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+										<div class="close"><span class="fa fa-remove"></span></div>
+										<h2>Email Total Authentications by Region</h2>
+										<div class="popup_in">
+											<label>Email Address</label>
+											<input type="email" placeholder="Email Address" class="form-control mb10">
+											<div class="text-center"><button class="btn btn-blue">Send</button></div>
+										</div>
+									</div>
+                                    <div class="bl_world_map inside world" ng-show="selectedRegion.value == ''">
+                                        <img src="resources/imgs/world-map.png" alt="" class="img">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.78%</span> of Total</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">22,140</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge small emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">27.05%</span> of Total</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">14,685</span>
+                                                <span class="note">25 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">32.15%</span> of Total</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">17,455</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside americas" ng-show="selectedRegion.value == 'Americas'">
+                                    	<img src="resources/imgs/world-map.png" alt="" class="img">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.78%</span> of Total</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">22,140</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside emea" ng-show="selectedRegion.value == 'EMEA'">
+                                        <div class="map_badge big emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.78%</span> of Total</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">14,685</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside apac" ng-show="selectedRegion.value == 'APAC'">
+                                        <div class="map_badge big apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.78%</span> of Total</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">17,455</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 mb10 mid_sec_rgt">
+                              <div class="bl_white bl_dashboard bdr sec_mid pb0">
+                                <h2>Top 3 Countries</h2>
+								<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+								<div class="section_info">
+								  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Content here</p>
+								  </div>
+								</div>
+								<div class="bl_mask"></div>
+								<div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+									<div class="close"><span class="fa fa-remove"></span></div>
+									<h2>Email Top 3 Countries</h2>
+									<div class="popup_in">
+										<label>Email Address</label>
+										<input type="email" placeholder="Email Address" class="form-control mb10">
+										<div class="text-center"><button class="btn btn-blue">Send</button></div>
+									</div>
+								</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bl_db_tbl">
+                                            <div class="clearfix">
+                                                <table class="tbl_db_bl">
+                                                    <tr>
+                                                        <th colspan="2">Country</th>
+                                                        <th width="30%"><span class="hidden-xs">Total Authentications</span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>USA</td>
+                                                        <td>14,579</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>China</td>
+                                                        <td>13,517</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>UK</td>
+                                                        <td>8,312</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="text-center"><button class="btn btn-blue">View All</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+						</tab>
+						
+						<tab class="nav-tabs">
+							<tab-heading ng-click="setAuthType('Genuine')">
+								<span class="auth_number">53,070</span>
+								<span class="auth_label">Genuine Authentications</span>
+								<span class="auth_note">+ 216 in last 24 hours</span> 
+							</tab-heading>
+							<div class="row">
+                        	<div class="col-md-8 col-sm-8 mid_sec_lft">
+                            	<div class="bl_white bl_dashboard bdr sec_mid map pb0">
+                                	<h2 class="padL15">Genuine Authentications by Region</h2>
+                                    <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+									<div class="section_info">
+									  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+										<p>Help Content here</p>
+									  </div>
+									</div>
+									<div class="bl_mask"></div>
+									<div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+										<div class="close"><span class="fa fa-remove"></span></div>
+										<h2>Email Genuine Authentications by Region</h2>
+										<div class="popup_in">
+											<label>Email Address</label>
+											<input type="email" placeholder="Email Address" class="form-control mb10">
+											<div class="text-center"><button class="btn btn-blue">Send</button></div>
+										</div>
+									</div>
+									<div class="bl_world_map inside world" ng-show="selectedRegion.value == ''">
+                                        <img src="resources/imgs/world-map.png" alt="" class="img">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.48%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">21,485</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge small emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">27.33%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">14,505</span>
+                                                <span class="note">25 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">32.20%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">17,080</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside americas" ng-show="selectedRegion.value == 'Americas'">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">40.48%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">21,485</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside emea" ng-show="selectedRegion.value == 'EMEA'">
+                                        <div class="map_badge big emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">27.33%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">14,505</span>
+                                                <span class="note">25 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                    <div class="bl_world_map inside apac" ng-show="selectedRegion.value == 'APAC'">
+                                        <div class="map_badge big apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">32.20%</span> of Genuine</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">17,080</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 mb10 mid_sec_rgt">
+                              <div class="bl_white bl_dashboard bdr sec_mid pb0">
+                                <h2>Top 3 Countries</h2>
+                                <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+								<div class="section_info">
+								  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Help Content here</p>
+								  </div>
+								</div>
+								<div class="bl_mask"></div>
+								<div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+									<div class="close"><span class="fa fa-remove"></span></div>
+									<h2>Email Top 3 Countries</h2>
+									<div class="popup_in">
+										<label>Email Address</label>
+										<input type="email" placeholder="Email Address" class="form-control mb10">
+										<div class="text-center"><button class="btn btn-blue">Send</button></div>
+									</div>
+								</div>
+								<div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bl_db_tbl">
+                                            <div class="clearfix">
+                                                <table class="tbl_db_bl">
+                                                    <tr>
+                                                        <th colspan="2">Country</th>
+                                                        <th width="30%"><span class="hidden-xs">Genuine Authentications</span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>USA</td>
+                                                        <td>11,524</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>China</td>
+                                                        <td>10,201</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>UK</td>
+                                                        <td>9,540</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="text-center"><button class="btn btn-blue">View All</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+						</tab>
+						
+						<tab class="nav-tabs">
+							<tab-heading ng-click="setAuthType('Counterfeit')">
+								<span class="auth_number">1,210</span>
+								<span class="auth_label">Counterfeit Authentications</span>
+								<span class="auth_note">+ 14 in last 24 hours</span>
+							</tab-heading>
+							<div class="row">
+                        	<div class="col-md-8 col-sm-8 mid_sec_lft">
+                            	<div class="bl_white bl_dashboard bdr sec_mid map pb0">
+                                	<h2 class="padL15">Counterfeit Authentications by Region</h2>
+                                    <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+									<div class="section_info">
+									  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+										<p>Help Content here</p>
+									  </div>
+									</div>
+									<div class="bl_mask"></div>
+									<div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+										<div class="close"><span class="fa fa-remove"></span></div>
+										<h2>Email Counterfeit Authentications by Region</h2>
+										<div class="popup_in">
+											<label>Email Address</label>
+											<input type="email" placeholder="Email Address" class="form-control mb10">
+											<div class="text-center"><button class="btn btn-blue">Send</button></div>
+										</div>
+									</div>
+									<div class="bl_world_map inside world" ng-show="selectedRegion.value == ''">
+                                        <img src="resources/imgs/world-map.png" alt="" class="img">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">54.13%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">655</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge small emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">14.87%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">180</span>
+                                                <span class="note">25 Entities</span>
+                                            </div>
+                                        </div>
+                                        <div class="map_badge apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">30.16%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">375</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside americas" ng-show="selectedRegion.value == 'Americas'">
+                                        <div class="map_badge big americas">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">54.13%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">Americas</span>
+                                                <span class="value">655</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside emea" ng-show="selectedRegion.value == 'EMEA'">
+                                        <div class="map_badge big emea">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">14.87%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">EMEA</span>
+                                                <span class="value">180</span>
+                                                <span class="note">25 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bl_world_map inside apac" ng-show="selectedRegion.value == 'APAC'">
+                                        <div class="map_badge big apac">
+                                            <div class="map_badge_in">
+                                                <div class="map_tip">
+                                                    <div class="map_tip_in"><span class="val">30.16%</span> of Counterfeit</div>
+                                                </div>
+                                                <span class="title">APAC</span>
+                                                <span class="value">375</span>
+                                                <span class="note">12 Entities</span>
+                                            </div>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 mb10 mid_sec_rgt">
+                              <div class="bl_white bl_dashboard bdr sec_mid pb0">
+                                <h2>Top 3 Countries</h2>
+								<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info"><span class="fa fa-info-circle"></span></a></div>
+								<div class="section_info">
+								  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+									<p>Help Content here</p>
+								  </div>
+								</div>
+								<div class="bl_mask"></div>
+								<div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+									<div class="close"><span class="fa fa-remove"></span></div>
+									<h2>Email Top 3 Countries</h2>
+									<div class="popup_in">
+										<label>Email Address</label>
+										<input type="email" placeholder="Email Address" class="form-control mb10">
+										<div class="text-center"><button class="btn btn-blue">Send</button></div>
+									</div>
+								</div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="bl_db_tbl">
+                                            <div class="clearfix">
+                                                <table class="tbl_db_bl">
+                                                    <tr>
+                                                        <th colspan="2">Country</th>
+                                                        <th width="30%"><span class="hidden-xs">Counterfeit Authentications</span></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>USA</td>
+                                                        <td>315</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>China</td>
+                                                        <td>304</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>UK</td>
+                                                        <td>255</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="text-center"><button class="btn btn-blue">View All</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+						</tab>
+					</tabset>
+				</div>
+			</div>
+		</div><!-- World Map Block ends -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+        <div class="row mb20 hidden visible-xs"> <!-- Authentications Block (Visible on mobile) starts -->
+        	<div class="col-md-6">
+          	<div class="bl_white bl_dashboard">
+            	<h2>Authentications</h2>
+            	<div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+              <div class="section_info">
+                <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                  <p>Content here</p>
+                </div>
+              </div>
+              <div class="bl_tabs tabs_authentications">
+                    <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation" class="active"><a href="#auth_total" aria-controls="auth_total" role="tab" data-toggle="tab" id="trigger_auth_total">Total</a></li><li role="presentation"><a href="#auth_genuine" aria-controls="auth_genuine" role="tab" data-toggle="tab" id="trigger_auth_genuine">Genuine</a></li><li role="presentation"><a href="#auth_suspect" aria-controls="auth_suspect" role="tab" data-toggle="tab" id="trigger_auth_suspect">Counterfeit</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="auth_total">
+                      	
+                      	<div class="bl_auth_graph graph_total">
+                          	<svg></svg>
+                              <div class="content">
+                              	<span class="value">54,280</span>
+                                  Total<br> Authentications
+                              </div>
+                          </div>
+                      	<div class="row tab_panel_details">
+                          	<div class="col-md-4 col-sm-4 col-xs-4 bl_americas">
+                              	<span class="value">22,140</span>
+                              	Americas
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-4 bl_emea">
+                              	<span class="value">14,685</span>
+                                  EMEA
+                              </div>
+                              <div class="col-md-4 col-sm-4 col-xs-4 bl_apac">
+                              	<span class="value">17,455</span>
+                                  APAC
+                              </div>
+                          </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="auth_genuine">
+                      	<div class="bl_auth_graph graph_genuine">
+                          	<svg></svg>
+                              <div class="content">
+                              	<span class="value">53,070</span>
+                                  Total<br> Authentications
+                              </div>
+                          </div>
+                      	<div class="row tab_panel_details">
+                          	<div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_americas">
+                              	<span class="value">21,485</span>
+                              	Americas
+                              </div>
+                              <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_emea">
+                              	<span class="value">14,505</span>
+                                  EMEA
+                              </div>
+                              <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_apac">
+                              	<span class="value">17,080</span>
+                                  APAC
+                              </div>
+                          </div>
+                      </div>
+                      <div role="tabpanel" class="tab-pane" id="auth_suspect">
+                      	<div class="bl_auth_graph graph_suspect">
+                          	<svg></svg>
+                              <div class="content">
+                              	<span class="value">1,210</span>
+                                  Total<br> Authentications
+                              </div>
+                          </div>
+                          <div class="row tab_panel_details">
+                          	<div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_americas">
+                              	<span class="value">655</span>
+                              	Americas
+                              </div>
+                              <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_emea">
+                              	<span class="value">180</span>
+                                  EMEA
+                              </div>
+                              <div class="col-md-4 col-md-4 col-sm-4 col-xs-4 bl_apac">
+                              	<span class="value">375</span>
+                                  APAC
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+              </div>
+              <div class="bl_mask"></div>
+              <div class="popup popup-email-section"><!-- Popup for Email Dashboard starts -->
+                  <div class="close"><span class="fa fa-remove"></span></div>
+                  <h2>Email Authentications</h2>
+                  <div class="popup_in">
+                      <label>Email Address</label>
+                      <input type="email" placeholder="Email Address" class="form-control mb10">
+                      <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- Authentications Block (Visible on mobile) ends -->
+        
+        <div class="row mb20">
+        	<div class="col-md-12">
+          	<div class="bl_white bl_dashboard">
+          		<h2>Total Authentications Over Time</h2>
+                  <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+                  <div class="section_info">
+                    <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                      <p>Help Content here</p>
+                    </div>
+                  </div>
+                  <div class="bl_mask"></div>
+                  <div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+                      <div class="close"><span class="fa fa-remove"></span></div>
+                      <h2>Email Total Authentications Over Time</h2>
+                      <div class="popup_in">
+                          <label>Email Address</label>
+                          <input type="email" placeholder="Email Address" class="form-control mb10">
+                          <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                      </div>
+                  </div>
+                  <div class="bl_bar_chart"></div>
+              </div>
+          </div>
+        </div>
+        
+        <div vertilize-container class="row">
+        	<div class="col-md-6 mb20">
+          	<div class="bl_white bl_dashboard btm_block">
+              	<h2>Total Authentication by Layer</h2>
+                  <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+                  <div class="section_info">
+                    <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                      <p>Help Content here</p>
+                    </div>
+                  </div>
+                  <div class="bl_mask"></div>
+                  <div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+                      <div class="close"><span class="fa fa-remove"></span></div>
+                      <h2>Email Total Authentication by Layer</h2>
+                      <div class="popup_in">
+                          <label>Email Address</label>
+                          <input type="email" placeholder="Email Address" class="form-control mb10">
+                          <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                      </div>
+                  </div>
+
+                  <div vertilize class="row">
+                 	<div class="col-md-4 col-sm-4 col-xs-4 bl_layers" ng-class="{'fn marA': selectedLayer.value == 'PCBA'}" ng-show="selectedLayer.value == 'PCBA' || selectedLayer.value == ''">
+
+                     	<span><img src="resources/imgs/pcba.png" alt=""></span>
+                         <span>{{ authLayerPCBA }}</span>
+                         <p>PCBA</p>
+                     </div>
+
+                     <div class="col-md-4 col-sm-4 col-xs-4 bl_layers" ng-class="{'fn marA': selectedLayer.value == 'Chassis'}" ng-show="selectedLayer.value == 'Chassis' || selectedLayer.value == ''">
+
+                     	<span><img src="resources/imgs/product.png" alt=""></span>
+                     	<span>{{ authLayerProduct }}</span>
+                         <p>Product</p>
+                     </div>
+
+                     <div class="col-md-4 col-sm-4 col-xs-4 bl_layers" ng-class="{'fn marA': selectedLayer.value == 'Box'}" ng-show="selectedLayer.value == 'Box' || selectedLayer.value == ''">
+
+                     	<span><img src="resources/imgs/packaging.png" alt=""></span>
+                         <span>{{ authLayerPackaging }}</span>
+                         <p>Packaging</p>
+                     </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-6 mb20">
+          	<div class="bl_white bl_dashboard btm_block">
+              	<h2>Total Authentications by Entity Type</h2>
+                  <div class="bl_icons"><a href="javascript:;" class="trigger_email pull-left"><span class="fa fa-envelope"></span></a> <a href="javascript:;" class="trigger_info pull-right"><span class="fa fa-info-circle"></span></a></div>
+                  <div class="section_info">
+                    <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                      <p>Help Content here</p>
+                    </div>
+                  </div>
+                  <div class="bl_mask"></div>
+                  <div class="popup popup-email-section"><!-- Popup for Email Worldmap starts -->
+                      <div class="close"><span class="fa fa-remove"></span></div>
+                      <h2>Email Total Authentication by Entity Type</h2>
+                      <div class="popup_in">
+                          <label>Email Address</label>
+                          <input type="email" placeholder="Email Address" class="form-control mb10">
+                          <div class="text-center"><button class="btn btn-blue">Send</button></div>
+                      </div>
+                  </div>
+                  <div vertilize class="row"><div id="entity_chart"></div></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </article>
+  </div>
+</div>
+
+<div class="mask"></div><!-- Popup Mask -->
+<div class="popup popup_email_dashboard"><!-- Popup for Email Dashboard starts -->
+	<div class="close"><span class="fa fa-remove"></span></div>
+	<h2>Email Report</h2>
+	<div class="popup_in">
+        <label>Email Address</label>
+        <input type="email" placeholder="Email Address" class="form-control mb10">
+        <div class="text-center"><button class="btn btn-blue">Send</button></div>
+    </div>
+</div><!-- Popup for Email Dashboard ends -->

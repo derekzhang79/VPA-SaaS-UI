@@ -1,0 +1,76 @@
+<div ng-include="'header.html'"></div>
+<div class="wrapper">
+  <!-- Sidebar starts -->
+  <div class="main_nav">
+    <div class="bl_filter">
+      <h2>Filter Data</h2>
+      <div class="filter_group"> <span class="filter_label">Region</span>
+        <ul>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-globe"></span>Worldwide <span class="glyphicon glyphicon-menu-right"></span></a></li>
+        </ul>
+      </div>
+      <div class="filter_group"> <span class="filter_label">Country</span>
+        <ul>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-map-marker"></span>All Countries <span class="glyphicon glyphicon-menu-right"></span></a></li>
+        </ul>
+      </div>
+      <div class="filter_group"> <span class="filter_label">Time Period</span>
+        <ul>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-calendar"></span>Last Year <span class="glyphicon glyphicon-menu-right"></span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bl_nav">
+      <h2>Navigation</h2>
+      <nav>
+        <ul>
+          <li class="act"><a href="javascript:;"><span class="glyphicon glyphicon-signal"></span>DASHBOARD</a></li>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-usd"></span>REVENUE LOSS</a></li>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-unchecked"></span>AUTHENTICATIONS</a></li>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-unchecked"></span>PRODUCTS</a></li>
+          <li><a href="javascript:;"><span class="glyphicon glyphicon-list-alt"></span>ENTITIES</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- Sidebar ends -->
+  <!-- Content area starts -->
+  <div class="bl_content">
+    <div class="bl_content_in">
+      <article>
+      <section>
+        <div class="container-fluid">
+          <div class="row">
+            <bars data="40,4,55,15,16,33,52,20"></bars>
+          </div>
+          <div class="row hidden-xs hidden-sm">
+            <div class="col-md-12">
+              <div class="bl_main_tabs"> <a href="javascript:;" class="trigger_info">i</a>
+                <div class="section_info">
+                  <div class="section_info_in"> <span class="close_section_info glyphicon glyphicon-remove"></span>
+                    <p>Content here</p>
+                    
+                  </div>
+                </div>
+                <div role="tabpanel">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"> <a href="#total_auth" aria-controls="total_auth" role="tab" data-toggle="tab"> <span class="auth_number">50,000</span> <span class="auth_label">Total Authentications</span> <span class="auth_note">+ 10,000 in last 24 hours</span> </a> </li>
+                    <li role="presentation"> <a href="#genuine_auth" aria-controls="genuine_auth" role="tab" data-toggle="tab"> <span class="auth_number">49,000</span> <span class="auth_label">Genuine Authentications</span> <span class="auth_note">+ 9000 in last 24 hours</span> </a> </li>
+                    <li role="presentation"> <a href="#suspect_auth" aria-controls="suspect_auth" role="tab" data-toggle="tab"> <span class="auth_number">1000</span> <span class="auth_label">Suspect Authentications</span> <span class="auth_note">+ 1000 in last 24 hours</span> </a> </li>
+                  </ul>
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="total_auth">Total Authentications</div>
+                    <div role="tabpanel" class="tab-pane" id="genuine_auth">Genuine Authentications</div>
+                    <div role="tabpanel" class="tab-pane" id="suspect_auth">Suspect Authentications</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </article>
+    </div>
+  </div>
+  <!-- Content area ends -->
+</div>

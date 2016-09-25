@@ -1,0 +1,65 @@
+@charset "utf-8";
+.bl_login .success{ color: #01a04a; font-family: "UniversLTStd-Light"; font-size: 11px; font-weight: normal; }
+.vpa_pagination .pagination li{ overflow: hidden; }
+.vpa_pagination .pagination > li a{ max-height: 34px; }
+.vpa_pagination .pagination > li > a:hover, .vpa_pagination .pagination > li > a:focus{ background: #fff; }
+.vpa_pagination .pagination > li.active > a:hover, .vpa_pagination .pagination > li.active > a:focus{ border: 1px solid #ddd; }
+.vpa_pagination .pagination > li:first-child > a,
+.vpa_pagination .pagination > li:nth-child(2) > a,
+.vpa_pagination .pagination > li:nth-last-child(2) > a,
+.vpa_pagination .pagination > li:last-child > a{ color: #fff; width: 35px; overflow: hidden; }
+.vpa_pagination .pagination > li a:before, .vpa_pagination .pagination > li a:after{ color: #333; font-family:'FontAwesome'; }
+.vpa_pagination .pagination > li:first-child > a:before{ content: '\f100'; }
+.vpa_pagination .pagination > li:last-child > a:before{ content: '\f101'; }
+.vpa_pagination .pagination > li:nth-child(2) > a:before{ content: '\f104'; }
+.vpa_pagination .pagination > li:nth-last-child(2) > a:before{ content: ' \f105'; }
+.vpa_pagination .pagination > li:nth-last-child(2) > a{ width: 33px; padding-left: 14px; }
+.tbl_db_bl td:nth-child(2){ width: 77%; overflow: hidden; }
+.tbl_db_bl td:last-child{ width: 18%; }
+.close .fa.fa-remove:before{ line-height: 18px; }
+.btm_block .tbl_db_bl tr:first-child th:last-child{ white-space: nowrap; }
+.popup.popup_email_dashboard{ margin-left: -150px; left: 50%; top: 60px; right: auto; bottom: auto; position: fixed; }
+.wrapper_login:before{ content: ''; position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #f00; background: #e6e6e6 url(../imgs/world-map-bg.png) no-repeat center top; background-size: contain; }
+.ribbon .flag .dropdown{ height: 60px; position: relative; }
+.ribbon .flag .dropdown > a { color: #fff; font-size: 30px; position: relative; line-height: 60px; height: 60px; display: block; text-align: center; text-decoration: none; }
+.ribbon .flag .dropdown > a:hover{ text-decoration: none; }
+.ribbon .flag .dropdown > a .fa{ vertical-align: middle; }
+.ribbon .flag .dropdown>.dropdown-menu, .ribbon .flag .dropdown.open>.dropdown-menu{ display: block; }
+.ribbon .flag .dropdown .sub_nav{ left: auto; max-height: 0; overflow: hidden; transition: max-height 500ms ease-in-out; padding: 0; }
+.ribbon .flag .dropdown .sub_nav .sub_nav_in{ padding: 10px 0; }
+.ribbon .flag .dropdown.open .sub_nav{ max-height: 500px; transition: max-height 500ms ease-in-out; }
+.ribbon .flag .dropdown .sub_nav ul{ margin-bottom: 10px; }
+.ribbon .flag .dropdown.open{ background: #fff; }
+.ribbon .flag .dropdown.open a{ color: #4e4f59; z-index: 1; }
+.ribbon .flag .dropdown .sub_nav ul li{ border: 0; padding: 10px 20px; border-bottom: 1px solid #b1b1b1; }
+.ribbon .flag .dropdown .sub_nav ul li:last-child{ border-bottom: 3px solid #d8d8d8; }
+.ribbon .flag .dropdown .sub_nav ul li .bold, .bold{ font-family: 'UniversLTStd-Bold'; font-weight: normal; } 
+.ribbon .flag .sub_nav{ margin: 0; border-radius: 0; border: 0; }
+.ribbon .flag .sub_nav table{ color: #fff; font-size: 13px; }
+.ribbon .flag .sub_nav table td:first-child{ max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-right: 10px; }
+.ribbon .flag .sub_nav table td:last-child{ max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tbl_db_bl td.blank{ font-family: 'UniversLTStd-Light'; font-size: 18px; color: #333; text-align: center; border-top: 1px solid #d6d6d9; border-bottom: 1px solid #d6d6d9; }
+.popup .errors{ color: #f00; font-family: "UniversLTStd-Light"; font-size: 11px; font-weight: normal; }
+.popup label{ width: 100%; display: block; font-family: "UniversLTStd-Light"; font-weight: normal; font-size: 14px; }
+.popup label.error{ color: #f00; }
+.popup .form-control.error{ border-color: #ffbbbb; }
+.popup_in{ padding: 10px 20px; }
+.ribbon .flag a .fa{ display: block; line-height: 60px; }
+.tbl_list tr.even td, .tbl_list tr.odd td{ vertical-align: middle; }
+.fn{ float: none; }
+.marA{ margin-left: auto; margin-right: auto; }
+.bl_world_map.inside.emea, .bl_world_map.inside.americas, .bl_world_map.inside.apac{ display: block; }
+@media (max-width: 1200px) {
+
+}
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+@media (max-width: 767px) {
+	.ribbon .flag{ position: static; }
+}
+@media (max-width: 480px) {
+	.ribbon .flag{ position: static; }
+}
+
+

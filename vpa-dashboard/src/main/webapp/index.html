@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vantage Point Analytics</title>
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/css/font.css">
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resources/css/footable.core.min.css">
+    <link rel="stylesheet" href="resources/css/style.css">
+	<link rel="stylesheet" href="resources/css/ngcss.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+    
+    <script src="resources/js/jquery-1.11.2.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+</head>
+<body data-ng-controller="mainController" ng-cloak data-ng-init="init()">
+    <div id="pageLoader" class="page_mask hidden"><div class="loader">Loading...</div></div>
+	<header data-ng-hide="globals.currentUser == undefined">
+  <!-- Top Ribbon starts -->
+  <div class="wrapper_ribbon">
+    <div class="ribbon">
+      <div class="nav_trigger">
+        <div class="icon"> <span></span> </div>
+        <span class="label">Menu</span> </div>
+      <!-- <div class="logo"><img src="resources/imgs/logo-white.png" alt=""></div> -->
+      <div class="logo"><a href="#/home"><img src="resources/imgs/vpa-globe.png" alt="" class="vpa_globe"> <!--span class="vpa_globe"></span--> <img src="resources/imgs/vantage-point.png" alt=""></a></div>
+      <div class="bl_search"> <a href="javascript:;" class="search_trigger"><span class="fa fa-search"></span></a>
+        <div class="bl_search_in">
+          <input type="search" class="form-control" placeholder="Search entity name or serial number" />
+          <button><span class="fa fa-search"></span></button>
+          <a href="javascript:;" class="hide_search"><span class="glyphicon glyphicon glyphicon-remove"></span></a> </div>
+      </div>
+		<div class="flag">
+			<div class="dropdown" dropdown on-toggle="notifDDToggled(open)">
+				<a href class="dropdown-toggle" dropdown-toggle>
+					<span class="fa fa-flag"><span class="badge badge-red" data-ng-init="notificationBadgeDigit=0">{{ notificationBadgeDigit }}</span></span>
+				
+				</a>
+				<div class="dropdown-menu sub_nav">
+					<!-- <h3 data-ng-show="notificationBadgeDigit <=0">No new notification</h3> -->
+					<div class="sub_nav_in"><!-- <div data-ng-hide="notificationBadgeDigit <=0"> -->
+						<h3>Latest Authentications</h3>
+						<ul>
+		                	<li data-ng-repeat="authentication in authenticationList | limitTo:3">
+		                		<span class="bold">{{ authentication.user.firstName }} {{ authentication.user.lastName }}</span> of {{ authentication.companyName }} authenticated a <span class="bold">{{ authentication.product.name }}</span> as a <span class="bold" ng-class="{'txt-red': authentication.scanResultDesc != 'Genuine' , 'txt-green': authentication.scanResultDesc == 'Genuine' }">{{ authentication.scanResultDesc }} Product</span>.</li>
+							<li	data-ng-hide="authenticationList.length" class="text-center bold">No new notification</li>
+		                </ul>
+						<div class="text-center"><button class="btn btn-blue" data-ng-click="redirectToNotification();">View All</button></div>
+					</div>
+	            </div>
+		    </div>
+		</div>
+      <div class="user_nav">
+        <ul>
+          <li><a href="javascript:;"> <span class="img"><img src="resources/imgs/cisco.png" alt=""></span> <span class="name"> <span>SVP</span> World Wide Sales </span> </a>
+            <ul>
+              <li><a ng-click="logout()">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Top Ribbon ends -->
+</header>
+<div class="wrapper">
+  <!-- Sidebar starts -->
+  <div class="main_nav" data-ng-hide="globals.currentUser == undefined">
+    <div class="bl_nav">
+      <nav>
+        <ul data-ng-controller="menuController" data-ng-cloak>
+          <li data-ng-repeat="item in navList" data-ng-class="{act:item.active}"><a data-ng-repeat="href in item.href | limitTo:1" href="{{href}}" ><span class="fa" data-ng-class="item.addclass"></span>{{item.text}}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- Sidebar ends -->
+    <!-- Content area starts -->
+    <div data-ng-view></div>
+	<!-- Content area ends -->
+	</div>
+
+	<script src="resources/js/angular-route.min.js"></script>
+	<script src="resources/js/html2canvas.js"></script>
+	<script src="resources/js/jquery.plugin.html2canvas.js"></script>
+	<script src="resources/js/rgbcolor.js"></script>
+    <script src="resources/js/StackBlur.js"></script>
+	<script src="resources/js/canvg.js"></script>
+	<script src="resources/js/ngStorage.min.js"></script>
+	<script src="resources/js/angular-vertilize.min.js"></script>
+	<script src="resources/js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+	<script src="resources/js/d3.v3.min.js"></script> 
+	<script src="resources/js/d3.tip.v0.6.3.js"></script>
+	<script src="resources/js/footable.js"></script>
+	<script src="resources/js/angular-footable.js"></script>
+	
+	<script type="text/javascript" src="resources/js/sockjs.min.js"></script>
+	<script type="text/javascript" src="resources/js/stomp.min.js"></script>
+	
+    <script src="main.js"></script>
+	<script src="services/sharedData.js"></script>
+    <script src="factories/factory.js"></script>
+    <script src="factories/commonFunctions.js"></script>
+    <script src="filters/filters.js"></script>
+    <script src="directives/directives.js"></script>
+    <script src="controllers/menuController.js"></script>
+    <script src="controllers/mainController.js"></script>
+    <script src="controllers/loginController.js"></script>
+    <script src="controllers/forgotPasswordController.js"></script>
+    <script src="controllers/dashboardController.js"></script>
+	<script src="controllers/notificationController.js"></script>
+	<script src="controllers/viewAllUnprotectedProductsController.js"></script>
+	<script src="controllers/viewAllCompromisedProductsController.js"></script>
+	<script src="controllers/viewAllBuyingCFEntitiesController.js"></script>
+	<script src="controllers/viewAllSellingCFEntitiesController.js"></script>
+	<script src="controllers/authenticationsController.js"></script>
+    <script src="controllers/resetPasswordController.js"></script>
+	
+	<script>
+	// Top bar multi level navigation
+		$('.ribbon ul li').click(function(){
+			if($(this).find('ul').length){
+				$(this).find('ul').slideToggle();
+				$(this).toggleClass('act');
+			}
+		});
+		
+		//Main navigation
+		$('.nav_trigger').click(function(){
+			$('.wrapper').toggleClass('show_nav');
+			$(this).toggleClass('act').find('.icon').toggleClass('open');
+			$(this).find('span.label').text(function(i, text){
+				return text === "Menu" ? "Hide Menu" : "Menu";
+			});
+		});
+		
+		$('.search_trigger').click(function(){ $('.bl_search_in').addClass('show');	});
+		$('.hide_search').click(function(){ $('.bl_search_in').removeClass('show');	});
+		
+		
+		//Auto close
+		$(document).on('click', function(event){
+			var target = event.target;
+			if(!$(target).hasClass('flag') && !$(target).parents().hasClass('flag')) {
+				$('.flag ul ul').slideUp(500);
+				$('.flag ul li.act').removeClass('act');
+			}
+			else{
+				return false;
+			};
+		});
+		$(document).on('click', function(event){
+			var target = event.target;
+			if(!$(target).hasClass('user_nav') && !$(target).parents().hasClass('user_nav')) {
+				$('.user_nav ul ul').slideUp(500);
+				$('.user_nav ul li.act').removeClass('act');
+			}
+			else{
+				return false;
+			};
+		});
+		
+		//Navigation
+		$('.bl_nav li').click(function(){
+			$('.bl_nav li').removeClass('act');
+			$(this).addClass('act');
+		});
+		
+		//Section info block
+		$('.trigger_info').click(function(){
+			$(this).next('.section_info').fadeIn(300);
+		});
+		$('.close_section_info').click(function(){
+			$(this).closest('.section_info').fadeOut(300);
+		});
+		$(document).keyup(function(e) {
+		  if(e.keyCode == 27){
+			$('.section_info').fadeOut(300);
+		  }
+		});		
+		
+		function showLoading(bool){
+			if(bool){ $('#pageLoader').removeClass('hidden') }
+			else{ $('#pageLoader').addClass('hidden') }
+		};
+		
+		//Page wise filters
+		$(window).scroll(function(){
+			if($(window).scrollTop() >= 61){
+				var cont_width = $('.pg_filters').closest('.container-fluid').width();
+				$('.pg_filters').addClass('is_stuck').css('width', cont_width);
+			}
+			else{
+				$('.pg_filters').removeClass('is_stuck').css('width', '100%');
+			}
+		});
+	</script>
+</body>
+</html>
